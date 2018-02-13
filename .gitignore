@@ -1,5 +1,6 @@
-# Ignore the HTML Cucumber report:
+# Ignore the HTML test reports:
 Cucumber-Report.html
+RSpec-Report.html
 
 # Ignore VI swap files:
 *.swp
