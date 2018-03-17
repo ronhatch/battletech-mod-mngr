@@ -1,6 +1,7 @@
 require 'cucumber/rake/task'
 require 'rspec/core/rake_task'
 
+task :rspec => :spec
 task :test => [:spec, :cucumber]
 
 Cucumber::Rake::Task.new do |t|
