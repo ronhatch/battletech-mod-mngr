@@ -5,3 +5,6 @@ RSpec-Report.html
 # Ignore VI swap files:
 *.swp
 
+# Ignore temporary files created for our tests:
+temp-testing/*
+
