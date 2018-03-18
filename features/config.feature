@@ -20,3 +20,13 @@ Feature: Read the configuration from a file.
     Then the configuration will not match the defaults
     And the configuration will be a superset of the defaults
 
+  @files
+  Scenario: Configuration file changes an option
+    Given the default configuration has a "ModDirectory" option
+    And the configuration file contains:
+    """
+      { "ModDirectory": "This is definitely not the default" }
+    """
+    When I load the configuration file
+    Then the configuration will not match the defaults
+

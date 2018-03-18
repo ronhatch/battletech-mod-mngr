@@ -1,3 +1,7 @@
+Given /^the default configuration has a(?:n?) "(.*?)" option$/ do |opt|
+  BattleTech::ConfigDefaults.should include opt
+end
+
 When /^I load the configuration file$/ do
   @config = BattleTech::load_config("#{TempDir}/#{BattleTech::ConfigFilename}")
 end
