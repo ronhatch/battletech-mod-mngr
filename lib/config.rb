@@ -6,6 +6,12 @@ module BattleTech
     '"ModDirectory": "mods" }')
 
   def self.load_config(filename)
-    return ConfigDefaults
+    if File.exists?(filename) then
+      conf = JSON.load( File.read(filename) )
+    else
+      conf = Hash.new
+    end
+    return ConfigDefaults.merge(conf)
   end
 end
+

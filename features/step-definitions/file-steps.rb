@@ -20,6 +20,10 @@ Given /^the file "(.*?)" does not exist$/ do |f|
   end
 end
 
+Given /^the file "(.*?)" contains:$/ do |filename, contents|
+  File.write("#{TempDir}/#{filename}", contents)
+end
+
 # And if we've made the temp directory, we need to clean it up.
 After('@files') do
   Dir.foreach(TempDir) do |f|

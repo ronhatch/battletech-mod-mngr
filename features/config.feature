@@ -10,7 +10,7 @@ Feature: Read the configuration from a file.
     When I load configuration from the file "test-config.json"
     Then the configuration will match the defaults
 
-  @wip @files
+  @files
   Scenario: Configuration file adds an option
     Given the file "test-config.json" contains:
     """
