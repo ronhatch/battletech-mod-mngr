@@ -13,6 +13,13 @@ Before('@files') do
   end
 end
 
+Given /^the file "(.*?)" does not exist$/ do |f|
+  filename = "#{TempDir}/#{f}"
+  if File.exist?(filename) then
+    File.delete(filename)
+  end
+end
+
 # And if we've made the temp directory, we need to clean it up.
 After('@files') do
   Dir.foreach(TempDir) do |f|
