@@ -13,15 +13,15 @@ Before('@files') do
   end
 end
 
-Given /^the file "(.*?)" does not exist$/ do |f|
-  filename = "#{TempDir}/#{f}"
+Given /^the configuration file does not exist$/ do
+  filename = "#{TempDir}/#{BattleTech::ConfigFilename}"
   if File.exist?(filename) then
     File.delete(filename)
   end
 end
 
-Given /^the file "(.*?)" contains:$/ do |filename, contents|
-  File.write("#{TempDir}/#{filename}", contents)
+Given /^the configuration file contains:$/ do |contents|
+  File.write("#{TempDir}/#{BattleTech::ConfigFilename}", contents)
 end
 
 # And if we've made the temp directory, we need to clean it up.

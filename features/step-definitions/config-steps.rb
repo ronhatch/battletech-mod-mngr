@@ -1,5 +1,5 @@
-When /^I load configuration from the file "(.*?)"$/ do |f|
-  @config = BattleTech::load_config("#{TempDir}/#{f}")
+When /^I load the configuration file$/ do
+  @config = BattleTech::load_config("#{TempDir}/#{BattleTech::ConfigFilename}")
 end
 
 Then /^the configuration will match the defaults$/ do

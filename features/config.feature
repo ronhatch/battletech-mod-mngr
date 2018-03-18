@@ -6,17 +6,17 @@ Feature: Read the configuration from a file.
 
   @files
   Scenario: No existing configuration
-    Given the file "test-config.json" does not exist
-    When I load configuration from the file "test-config.json"
+    Given the configuration file does not exist
+    When I load the configuration file
     Then the configuration will match the defaults
 
   @files
   Scenario: Configuration file adds an option
-    Given the file "test-config.json" contains:
+    Given the configuration file contains:
     """
       { "Fake option that doesn't really exist": "Some value" }
     """
-    When I load configuration from the file "test-config.json"
+    When I load the configuration file
     Then the configuration will not match the defaults
     And the configuration will be a superset of the defaults
 

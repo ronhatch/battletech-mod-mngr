@@ -1,6 +1,7 @@
 require 'json'
 
 module BattleTech
+  ConfigFilename = 'mod-config.json'
   ConfigDefaults = JSON.load('{ "GameLocation": ' +
     '"C:/Program Files (x86)/Steam/SteamApps/common/BattleTech - Private Beta", ' +
     '"ModDirectory": "mods" }')
