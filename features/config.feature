@@ -30,3 +30,14 @@ Feature: Read the configuration from a file.
     When I load the configuration file
     Then the configuration will not match the defaults
 
+  @files
+  Scenario: Configuration file can include comments
+    Given the configuration file contains:
+    """
+      { // This kind of comment ends when the line does.
+        /* This kind of comment only ends with a * and a / together.
+             Like this: */ }
+    """
+    When I load the configuration file
+    Then the configuration will match the defaults
+
