@@ -3,7 +3,7 @@ Given /^the default configuration has a(?:n?) "(.*?)" option$/ do |opt|
 end
 
 When /^I load the configuration file$/ do
-  @config = BattleTech::load_config("#{TempDir}/#{BattleTech::ConfigFilename}")
+  @config = BattleTech::load_config(File.join(TempDir, BattleTech::ConfigFilename))
 end
 
 Then /^the configuration will match the defaults$/ do
