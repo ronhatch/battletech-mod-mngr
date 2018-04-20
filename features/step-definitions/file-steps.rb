@@ -25,6 +25,17 @@ Given /^the configuration file contains:$/ do |contents|
   File.write(File.join(TempDir, BattleTech::ConfigFilename), contents)
 end
 
+Given /^the configuration file points to our test directory$/ do
+  File.write("#{TempDir}/#{BattleTech::ConfigFilename}", "{ \"GameLocation\": \"#{TempDir}\" }")
+end
+
+Given /^the game executable is not in our test directory$/ do
+  filename = File.join(TempDir, BattleTech::GameExeLocation)
+  if File.exist?(filename) then
+    File.delete(filename)
+  end
+end
+
 # And if we've made the temp directory, we need to clean it up.
 After('@files') do
   Dir.foreach(TempDir) do |f|

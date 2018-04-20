@@ -20,3 +20,7 @@ Then /^the configuration will be a superset of the defaults$/ do
   end
 end
 
+Then /^the configuration will not be considered valid$/ do
+  BattleTech::is_config_valid?(@config).should == false
+end
+
