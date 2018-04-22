@@ -1,3 +1,4 @@
+require 'fileutils'
 TempDir = 'temp-testing'
 
 # Any scenario that uses files needs the temp directory.
@@ -29,21 +30,32 @@ Given /^the configuration file points to our test directory$/ do
   File.write("#{TempDir}/#{BattleTech::ConfigFilename}", "{ \"GameLocation\": \"#{TempDir}\" }")
 end
 
-Given /^the game executable is not in our test directory$/ do
-  filename = File.join(TempDir, BattleTech::GameExeLocation)
-  if File.exist?(filename) then
-    File.delete(filename)
+Given /^the game (.*?) is( not)? in our test directory$/ do |f, n|
+  file_location = case f
+  when 'executable'
+    BattleTech::GameExeLocation
+  when 'version'
+    BattleTech::GameVersionLocation
+  when 'database'
+    BattleTech::GameDBLocation
+  when 'manifest'
+    BattleTech::GameManifestLocation
+  else
+    fail 'Invalid step... unrecognized file type.'
+  end
+  if (n == ' not') then
+    filename = File.join(TempDir, file_location)
+    if File.exist?(filename) then
+      File.delete(filename)
+    end
+  else
+    FileUtils.mkdir_p File.join(TempDir, file_location[0...-1])
+    FileUtils.touch File.join(TempDir, file_location)
   end
 end
 
 # And if we've made the temp directory, we need to clean it up.
 After('@files') do
-  Dir.foreach(TempDir) do |f|
-    name = File.join(TempDir, f)
-    if File.file?(name) then
-      File.delete(name)
-    end
-  end
-  Dir.delete(TempDir)
+  FileUtils.rm_rf(TempDir, :secure => true)
 end
 

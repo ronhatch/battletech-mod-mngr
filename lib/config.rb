@@ -5,10 +5,10 @@ module BattleTech
   ConfigDefaults = JSON.load('{ "GameLocation": ' +
     '"C:/Program Files (x86)/Steam/SteamApps/common/BattleTech - Private Beta", ' +
     '"ModDirectory": "mods" }')
-  GameExeLocation = 'BattleTech.exe'
-  GameVersionLocation = 'BattleTech_Data/StreamingAssets/version.json'
-  GameDBLocation = 'BattleTech_Data/StreamingAssets/MDD/MetadataDatabase.db'
-  GameManifestLocation = 'BattleTech_Data/StreamingAssets/data/VersionManifest.csv'
+  GameDBLocation = ['BattleTech_Data','StreamingAssets','MDD','MetadataDatabase.db']
+  GameExeLocation = ['BattleTech.exe']
+  GameManifestLocation = ['BattleTech_Data','StreamingAssets','data','VersionManifest.csv']
+  GameVersionLocation = ['BattleTech_Data','StreamingAssets','version.json']
 
   def self.load_config(filename)
     if File.exists?(filename) then
@@ -20,7 +20,11 @@ module BattleTech
   end
 
   def self.is_config_valid?(cfg)
-    return false
+    # Configuration is valid if all the critical files exist...
+    return File.exist?( File.join(cfg['GameLocation'],GameDBLocation) ) &&
+           File.exist?( File.join(cfg['GameLocation'],GameExeLocation) ) &&
+           File.exist?( File.join(cfg['GameLocation'],GameManifestLocation) ) &&
+           File.exist?( File.join(cfg['GameLocation'],GameVersionLocation) )
   end
 end
 
