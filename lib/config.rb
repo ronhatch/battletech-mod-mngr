@@ -2,9 +2,10 @@ require 'json'
 
 module BattleTech
   ConfigFilename = 'mod-config.json'
-  ConfigDefaults = JSON.load('{ "GameLocation": ' +
-    '"C:/Program Files (x86)/Steam/SteamApps/common/BattleTech - Private Beta", ' +
-    '"ModDirectory": "mods" }')
+  ConfigDefaults = Hash.new
+  ConfigDefaults['GameLocation'] = File.join('C:', 'Program Files (x86)', 'Steam',
+                 'SteamApps', 'common', 'BattleTech - Private Beta')
+  ConfigDefaults['ModDirectory'] = 'mods'
   GameDBLocation = ['BattleTech_Data','StreamingAssets','MDD','MetadataDatabase.db']
   GameExeLocation = ['BattleTech.exe']
   GameManifestLocation = ['BattleTech_Data','StreamingAssets','data','VersionManifest.csv']
