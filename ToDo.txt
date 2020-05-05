@@ -1,0 +1,60 @@
+When sanity checking:
+  - Verify the following files and directories exist:
+    [The configured path for BattleTech]
+    BattleTech.exe
+    BattleTech_Data directory
+      StreamingAssets directory
+        version.json
+        [The configured mods directory]
+        data directory
+          VersionManifest.csv
+          assetbundles directory
+  - Verify the version.json file has just these keys:
+    - ProductName (should be set to BattleTech)
+    - ProductVersion
+    - BuildRevision
+    - BuildBranch
+    - BuildDate
+    - BuildStamp
+    - BuildNumber
+  - Verify the VersionManifest.csv file has just these columns:
+    - id
+    - type
+    - path
+    - version
+    - addedOn
+    - updatedOn
+    - removedOn
+    - assetBundleName
+    - assetBundleCRC
+
+When validating a mod:
+  - Verify ModManifest.csv exists.
+  - Verify ModManifest.csv has the correct case-sensitive filename.
+  - Parsing ModManifest.csv should not trigger any errors.
+  - Parsing failures of ModManifest.csv should give detailed error information.
+  - ModManifest.csv and VersionManifest.csv should have the same column
+    headings. (If the columns are in a different order, the code should handle
+    it, and the final order should match VersionManifest.csv.)
+  - Allow comments in ModManifest.csv.
+  - For all lines in ModManifest.csv:
+    - Verify any file referenced exists.
+    - Verify referenced files use the correct case-sensitive filenames.
+    - Verify anything contained in an asset bundle exists.
+    - Parsing JSON files should not trigger any errors.
+    - Parsing failures of JSON files should give detailed error information.
+    - Parsing asset bundles should not trigger any errors.
+    - Parsing failures of asset bundles should give detailed error information.
+  - Verify ModData.json exists.
+  - Verify ModData.json has the correct case-sensitive filename.
+  - Parsing ModData.json should not trigger any errors.
+  - Parsing failures of ModData.json should give detailed error information.
+
+When installing a mod or multiple mods:
+  - Run the validation first
+  - The output CSV should not have any duplicate IDs.
+  - All lines should be in the same order as in the original files.
+  - All lines from each mod should come after the prior applied mods, if any.
+  - A copy of VersionManifest.csv should be saved in OriginalManifest.csv.
+  - Currently installed mods should be listed in CurrentMods.json.
+

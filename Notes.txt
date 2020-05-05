@@ -1,0 +1,45 @@
+Random details I wanted to remember... mostly how to read in different formats from Ruby.
+
+require 'csv'
+c = CSV.read 'VersionManifest.csv', {headers: true}
+c[0]
+c[-1]
+c[-1].to_csv
+c[0].to_csv
+c[-2].to_csv
+# Mangles the last line a bit, since the output has commas to delimit all fields.
+c.to_csv
+# Comments can be included using a regexp for the skip_lines parameter.
+#   (But they don't seem to be supported by the reader HBS is using.)
+# Allowing them in the ModManifest.csv file would be a useful feature.
+c.headers
+DateTime.parse(any timestamp field)
+
+require 'json'
+j = JSON.load File.read 'mech/mechdef_atlas_AS7-D.json'
+j.class
+j.keys
+j['Description']
+puts JSON.pretty_generate j, {indent: '    '}
+# Comments are C-style:
+#   /* Inline comments */
+#   // Line comments
+
+BattleTech - Private Beta
+Windows default: C:/Program Files (x86)/Steam/SteamApps/common/
+Mac default: ~/Library/Application Support/Steam/steamapps/
+
+Save game locations:
+    Steam -
+    WIN: 'C:\Program Files (x86)\Steam\userdata\USER_ID\ 637090\remote\C#\SGS#'
+    OSX: ‘/Users/"USER_ID"/Library/Application Support/Steam/userdata/"ACCOUNT_ID"/637090/remote/C#/SGS#’
+
+    GOG -
+    WIN: ‘C:\Users\USER_ID\AppData\Local\GOG.com\Galaxy\Applications\50593543263669699\Storage\Shared\Files\C#\SGS#’
+    MAC: ‘~\Library\Application Support\GOG.com\Galaxy\Applications\50593543263669699\Storage\Shared\Files\C#\SGS#’
+
+    Everything Else
+    WIN: 'C:\Users\USER_ID\AppData\LocalLow\Harebrained Schemes\BattleTech\C#\SGS#'
+    MAC: ‘~\Library\Application Support\Harebrained Schemes\BattleTech\C#\SGS#'
+     
+

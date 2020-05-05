@@ -1,5 +1,8 @@
 {
   "GameLocation" : "C:/Program Files (x86)/Steam/SteamApps/common/BattleTech - Private Beta",
+//  This is where I have the files on my development system.
+//  (My dual-boot Windows C: drive, as seen from Linux.)
+//  "GameLocation" : "/media/rhatch/4EEC3CDEEC3CC24F/Games/BattleTech - Private Beta - Testing",
   "ModDirectory" : "mods"
 }
 
